@@ -6,6 +6,7 @@ import com.bfhl.api.service.BfhlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/bfhl")
@@ -29,5 +30,10 @@ public class BfhlController {
             errorResponse.setSuccess(false);
             return ResponseEntity.ok(errorResponse);
         }
+    }
+
+    @GetMapping("/health")
+    public ResponseEntity<Map<String, String>> health() {
+        return ResponseEntity.ok(Map.of("status", "OK", "service", "bfhl-api"));
     }
 }
